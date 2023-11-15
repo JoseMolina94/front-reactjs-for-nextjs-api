@@ -1,0 +1,44 @@
+td, th {
+    border-bottom: 1px solid #E6E6E6;
+    padding: 0;
+    cursor: pointer;
+}
+
+th :hover {
+    background: #E6E6E6;
+    cursor: pointer;
+}
+
+table {
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.header-label {
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    cursor: pointer;
+    color: white;
+    border-width: 0;
+    font-size: 24px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+button :hover {
+    opacity: 0.8;
+}
