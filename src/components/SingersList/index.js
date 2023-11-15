@@ -83,7 +83,7 @@ export const SingersList = (props) => {
     <div>
       <h1
         style={{
-          borderBottom: "1px solid #E6E6E6",
+          borderBottom: "1px solid #D6D6D6",
           lineHeight: "64px"
         }}
       >

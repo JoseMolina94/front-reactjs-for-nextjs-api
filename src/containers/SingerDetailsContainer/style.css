@@ -30,19 +30,6 @@
     margin: 0
 }
 
-.header {
-    display: flex;
-    gap: 20px;
-    border-bottom: 1px solid #E6E6E6;
-    margin-bottom: 20px;
-}
-
-.singer-name {
-    font-size: 32px;
-    line-height: 64px;
-    margin: 0 0 0 0;
-}
-
 .musical-genres-list {
     display: flex;
     gap: 5px;

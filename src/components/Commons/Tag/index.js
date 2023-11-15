@@ -5,7 +5,7 @@ export const Tag = ({text, style = {}}) => {
   return (
     <div
       style={{
-        background: "#E6E6E6",
+        background: "#D6D6D6",
         borderRadius: "20px",
         width: "auto",
         display: "inline-block",

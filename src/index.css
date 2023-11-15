@@ -21,6 +21,13 @@ code {
   color: black !important;
 }
 
+.header {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #D6D6D6;
+  margin-bottom: 20px;
+}
+
 @keyframes enter {
   from {
     opacity: 0;

@@ -5,8 +5,7 @@ import { SingersList } from "../../components/SingersList";
 export const Home = () => {
   const {
     singers,
-    loading,
-    error
+    loading
   } = useGetSingers()
 
   return (
