@@ -8,7 +8,8 @@ export const Input = (props) => {
     onChangeFunc = (props) => {},
     type = "text",
     style = {},
-    label = ""
+    label = "",
+    required = false
   } = props
   const [inputValue, setInputValue] = useState(value)
 
@@ -30,23 +31,26 @@ export const Input = (props) => {
       >
         {label}
       </p>
+
       {
         type !== "textarea"
         ? <input
+          className="input"
           type={type}
           name={name}
           value={inputValue}
           onChange={onChange}
           style={style}
+          required={required}
         />
         : <textarea
+            className="textarea"
             name={name}
             value={inputValue}
             onChange={onChange}
+            required={required}
           />
       }
-
-
     </div>
   )
 }

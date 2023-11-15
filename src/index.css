@@ -28,6 +28,10 @@ code {
   margin-bottom: 20px;
 }
 
+.disabled {
+  opacity: 0.75;
+}
+
 @keyframes enter {
   from {
     opacity: 0;

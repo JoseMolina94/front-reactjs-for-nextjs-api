@@ -3,14 +3,14 @@ import { useGetSingerById } from "../../hooks/useGetSingerById";
 import {Link} from "react-router-dom";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { useCreateUpdateOrDeleteSinger } from "../../hooks/useCreateUpdateOrDeleteSinger";
-import { MdOutlinePhotoCamera } from "react-icons/md";
+import { SingerImageInput } from "../../components/SingerImageInput";
 import { Input } from "../../components/Commons/Input";
+import { CheckBox } from "../../components/Commons/CheckBox";
 import "./styles.css"
 
 export const CreateOrEditSingerContainer = ({ id = '' }) => {
   const {
-    singer,
-    loadingSinger
+    singer
   } = useGetSingerById(id)
   const {
     createSinger,
@@ -32,11 +32,25 @@ export const CreateOrEditSingerContainer = ({ id = '' }) => {
   }
 
   const onChangeFunc = ({name, value}) => {
-    console.log('III', name, value)
+    console.log('III', value)
     let currentValues = formState
     currentValues[name] = value
 
-    setFormState(currentValues)
+    setFormState({...currentValues})
+  }
+
+  const onSubmit = async () => {
+    if (validate()) {
+      const response = await createSinger(formState)
+      console.log("created: ", response)
+    }
+  }
+
+  const validate = () => {
+    if (formState.name && formState.birthday && formState.age && formState.nationality) {
+      return true
+    }
+    return false
   }
 
   useEffect(() => {
@@ -53,54 +67,41 @@ export const CreateOrEditSingerContainer = ({ id = '' }) => {
   }, [formState])
 
   return (
-    <div>
-      <div className="header" >
+    <form>
+      <div>
+        <div className="header" >
 
-        <div
-          className="icon"
-          style={{
-            fontSize: "32px"
-          }}
-        >
-          <Link to="/">
-            <MdOutlineArrowBack />
-          </Link>
+          <div
+            className="icon"
+            style={{
+              fontSize: "32px"
+            }}
+          >
+            <Link to="/">
+              <MdOutlineArrowBack />
+            </Link>
+          </div>
+
+          <h1 className="singer-name">
+            {singer?.name || "Registry Singer"}
+          </h1>
         </div>
 
-        <h1 className="singer-name">
-          {singer?.name || "Registry Singer"}
-        </h1>
-      </div>
+        <div className="form-container">
+          <SingerImageInput
+            name="image"
+            value={formState?.image}
+            onChangeFunc={onChangeFunc}
+          />
 
-      <div className="form-container">
-        <div className="img-container">
-          {
-            formState?.image
-              ? <img src={formState?.image} alt="Singer Image" />
-              : <div className="photo-icon">
-                <MdOutlinePhotoCamera />
-              </div>
-          }
-        </div>
-
-        <div className="form-input-container">
-          <form>
-            <div className="basic-info-section">
-              <Input
-                name="name"
-                value={formState?.name}
-                onChangeFunc={onChangeFunc}
-                label="Name"
-              />
-
-              <Input
-                name="image"
-                value={formState?.image}
-                onChangeFunc={onChangeFunc}
-                label="Image Url"
-              />
-            </div>
-
+          <div className="form-input-container">
+            <Input
+              name="name"
+              value={formState?.name}
+              onChangeFunc={onChangeFunc}
+              label="Name"
+              required
+            />
 
             <div className="birth-and-age-section">
               <Input
@@ -109,6 +110,7 @@ export const CreateOrEditSingerContainer = ({ id = '' }) => {
                 onChangeFunc={onChangeFunc}
                 label="Age"
                 type="number"
+                required
               />
 
               <Input
@@ -117,6 +119,7 @@ export const CreateOrEditSingerContainer = ({ id = '' }) => {
                 onChangeFunc={onChangeFunc}
                 label="Birthday"
                 type="date"
+                required
               />
 
               <Input
@@ -124,6 +127,7 @@ export const CreateOrEditSingerContainer = ({ id = '' }) => {
                 value={formState?.nationality}
                 onChangeFunc={onChangeFunc}
                 label="Nationality"
+                required
               />
             </div>
 
@@ -134,17 +138,57 @@ export const CreateOrEditSingerContainer = ({ id = '' }) => {
               label="Info Link"
             />
 
+            <div className="band-info-section">
+              <CheckBox
+                name="inABand"
+                value={formState?.inABand}
+                onChangeFunc={onChangeFunc}
+                label="In a Band?"
+                style={{
+                  height: "20px",
+                  width: "20px"
+                }}
+              />
+
+              {
+                formState.inABand &&
+                  <Input
+                    name="bandName"
+                    value={formState?.bandName}
+                    onChangeFunc={onChangeFunc}
+                    label="Band Name"
+                  />
+              }
+            </div>
+
             <Input
               name="description"
               value={formState?.description}
               onChangeFunc={onChangeFunc}
               type="textarea"
               label="Description"
+              required
             />
 
-          </form>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center"
+              }}
+            >
+              <button
+                onClick={() => onSubmit()}
+                className="save-btn"
+                disabled={loadingProcess}
+              >
+                Save
+              </button>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   )
 }

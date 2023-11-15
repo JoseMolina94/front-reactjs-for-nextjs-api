@@ -6,7 +6,7 @@ export const useCreateUpdateOrDeleteSinger = () => {
 
   const createSinger = async (data) => {
     try {
-      const response = await fetch('/api/add-or-update-singer', {
+      const response = await fetch('http://127.0.0.1:3000/api/add-or-update-singer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ export const useCreateUpdateOrDeleteSinger = () => {
         setResponse(`Error: ${response.status}`)
       }
 
-      const data = await response.json();
-      setResponse(data);
+      const dataResponse = await response.json();
+      setResponse(dataResponse);
       setLoadingProcess(false)
     } catch (e) {
       setLoadingProcess(false)

@@ -6,23 +6,6 @@
     animation-name: enter;
 }
 
-.img-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #D6D6D6;
-    min-width: 100%;
-    min-height: 500px;
-}
-
-.photo-icon {
-    font-size: 120px;
-    color: #D6D6D6;
-}
-
 .form-input-container {
     display: block;
 }
@@ -33,8 +16,15 @@
     grid-template-columns: 130px auto 1fr;
 }
 
-.basic-info-section {
+.band-info-section {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 200px 1fr;
+    height: 85px;
+}
+
+.save-btn {
+    padding: 10px 10px 10px 10px;
+    font-size: 24px;
+    background: green;
 }
